@@ -20,9 +20,10 @@ function init(containerSelector: string, props: { price: number }) {
   );
 }
 
-
+// eslint-disable-next-line react-refresh/only-export-components
 export { init };
-
+const SequraWidget = { init };
 if (typeof window !== 'undefined') {
-  window.SequraWidget = { init };
+  window.SequraWidget = SequraWidget;
 }
+export default SequraWidget;
