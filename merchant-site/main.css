@@ -1,0 +1,39 @@
+ul > li {
+  font-weight: bold;
+  text-decoration: line-through;
+  cursor: pointer;
+}
+
+li.active {
+  border-bottom: 3px solid green;
+}
+
+.btn {
+  width: 100%;
+  border-radius: 0;
+}
+
+.section, .container, .content {
+  width: 100%;
+  margin-left: -15px;
+  padding: 2px;
+  padding-left: 15px;
+  padding-right: 15px;
+  background: #f8f9f9;
+}
+
+.price, .installment, .installments,
+.instalment, .instalments, .fee, .pricefee {
+  display: inline-block;
+  outline: 1px solid red;
+}
+
+.modal {
+  inset: 0 0 0;
+}
+
+.list-disc li {
+  font-weight: 400;
+  text-decoration: none;
+}
+

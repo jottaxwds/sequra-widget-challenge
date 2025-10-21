@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>SeQura - Frontend Challenge</title>
+  <link href="main.css" rel="stylesheet" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+  <script src="main.js"></script>
+</head>
+
+<body>
+  <div class="bg-white">
+    <div class="pt-6">
+      <nav aria-label="Breadcrumb">
+        <ol role="list" class="mx-auto flex max-w-2xl items-center space-x-2 px-4 sm:px-6 lg:max-w-7xl lg:px-8">
+          <li>
+            <div class="flex items-center">
+              <a href="#" class="mr-2 text-sm font-medium text-gray-900">seQura</a>
+              <svg width="16" height="20" viewBox="0 0 16 20" fill="currentColor" aria-hidden="true" class="h-5 w-4 text-gray-300">
+                <path d="M5.697 4.34L8.98 16.532h1.327L7.025 4.341H5.697z" />
+              </svg>
+            </div>
+          </li>
+          <li>
+            <div class="flex items-center">
+              <a href="#" class="mr-2 text-sm font-medium text-gray-900">Frontend Challenge</a>
+              <svg width="16" height="20" viewBox="0 0 16 20" fill="currentColor" aria-hidden="true" class="h-5 w-4 text-gray-300">
+                <path d="M5.697 4.34L8.98 16.532h1.327L7.025 4.341H5.697z" />
+              </svg>
+            </div>
+          </li>
+          <li class="text-sm">
+            <a href="#" aria-current="page" class="font-medium text-gray-500 hover:text-gray-600">iPhone 14 Pro</a>
+          </li>
+        </ol>
+      </nav>
+
+      <!-- Product info -->
+      <div class="mx-auto max-w-2xl px-4 pt-10 pb-16 sm:px-6 lg:grid lg:max-w-7xl lg:grid-cols-3 lg:gap-x-8 lg:px-8 lg:pt-10 lg:pb-20 ">
+        <div class="lg:col-span-2 lg:border-r lg:border-gray-200">
+          <!-- Image gallery -->
+          <div class="overflow-hidden max-h-96 lg:max-h-full rounded-lg">
+            <img src="https://store.storeimages.cdn-apple.com/4668/as-images.apple.com/is/iphone14pro-digitalmat-gallery-5-202209?wid=910&hei=833&fmt=jpg" alt="iPhone" class="h-full w-full object-contain object-top">
+          </div>
+        </div>
+
+        <!-- Options -->
+        <div class="mt-4 lg:row-span-3 lg:mt-0">
+          <span class="text-xs uppercase text-orange-300 font-medium">new</span>
+          <h1 class="text-2xl font-bold tracking-tight text-gray-900 sm:text-3xl">Apple iPhone 14 PRO</h1>
+
+          <!-- Reviews -->
+          <div class="mt-2 mb-6">
+            <h3 class="sr-only">Reviews</h3>
+            <div class="flex items-center">
+              <div class="flex items-center">
+                <svg class="text-gray-900 h-5 w-5 flex-shrink-0" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                  <path fill-rule="evenodd" d="M10.868 2.884c-.321-.772-1.415-.772-1.736 0l-1.83 4.401-4.753.381c-.833.067-1.171 1.107-.536 1.651l3.62 3.102-1.106 4.637c-.194.813.691 1.456 1.405 1.02L10 15.591l4.069 2.485c.713.436 1.598-.207 1.404-1.02l-1.106-4.637 3.62-3.102c.635-.544.297-1.584-.536-1.65l-4.752-.382-1.831-4.401z" clip-rule="evenodd" />
+                </svg>
+                <svg class="text-gray-900 h-5 w-5 flex-shrink-0" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                  <path fill-rule="evenodd" d="M10.868 2.884c-.321-.772-1.415-.772-1.736 0l-1.83 4.401-4.753.381c-.833.067-1.171 1.107-.536 1.651l3.62 3.102-1.106 4.637c-.194.813.691 1.456 1.405 1.02L10 15.591l4.069 2.485c.713.436 1.598-.207 1.404-1.02l-1.106-4.637 3.62-3.102c.635-.544.297-1.584-.536-1.65l-4.752-.382-1.831-4.401z" clip-rule="evenodd" />
+                </svg>
+                <svg class="text-gray-900 h-5 w-5 flex-shrink-0" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                  <path fill-rule="evenodd" d="M10.868 2.884c-.321-.772-1.415-.772-1.736 0l-1.83 4.401-4.753.381c-.833.067-1.171 1.107-.536 1.651l3.62 3.102-1.106 4.637c-.194.813.691 1.456 1.405 1.02L10 15.591l4.069 2.485c.713.436 1.598-.207 1.404-1.02l-1.106-4.637 3.62-3.102c.635-.544.297-1.584-.536-1.65l-4.752-.382-1.831-4.401z" clip-rule="evenodd" />
+                </svg>
+                <svg class="text-gray-900 h-5 w-5 flex-shrink-0" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                  <path fill-rule="evenodd" d="M10.868 2.884c-.321-.772-1.415-.772-1.736 0l-1.83 4.401-4.753.381c-.833.067-1.171 1.107-.536 1.651l3.62 3.102-1.106 4.637c-.194.813.691 1.456 1.405 1.02L10 15.591l4.069 2.485c.713.436 1.598-.207 1.404-1.02l-1.106-4.637 3.62-3.102c.635-.544.297-1.584-.536-1.65l-4.752-.382-1.831-4.401z" clip-rule="evenodd" />
+                </svg>
+                <svg class="text-gray-200 h-5 w-5 flex-shrink-0" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                  <path fill-rule="evenodd" d="M10.868 2.884c-.321-.772-1.415-.772-1.736 0l-1.83 4.401-4.753.381c-.833.067-1.171 1.107-.536 1.651l3.62 3.102-1.106 4.637c-.194.813.691 1.456 1.405 1.02L10 15.591l4.069 2.485c.713.436 1.598-.207 1.404-1.02l-1.106-4.637 3.62-3.102c.635-.544.297-1.584-.536-1.65l-4.752-.382-1.831-4.401z" clip-rule="evenodd" />
+                </svg>
+              </div>
+              <p class="sr-only">4 out of 5 stars</p>
+              <a href="#" class="ml-3 text-sm font-medium text-green-600 hover:text-green-500">117 reviews</a>
+            </div>
+          </div>
+
+          <!-- Product Price-->
+          <p id="product-price" class="text-4xl tracking-tight text-gray-900">399,99 €</p>
+
+          <div class="form mt-8">
+            <!-- Colors -->
+            <h3 class="text-sm font-medium text-gray-900">Color</h3>
+            <fieldset class="mt-4">
+              <legend class="sr-only">Choose a color</legend>
+              <div class="flex items-center space-x-3">
+                <label class="item-color ring hover:ring relative -m-0.5 flex cursor-pointer items-center justify-center rounded-full p-0.5 focus:outline-none ring-green-500">
+                  <span id="color-choice-0-label" class="sr-only">white</span>
+                  <span aria-hidden="true" class="h-8 w-8 bg-white rounded-full border border-black border-opacity-10"></span>
+                </label>
+                <label class="item-color hover:ring hover:ring-gray-200 relative -m-0.5 flex cursor-pointer items-center justify-center rounded-full p-0.5 focus:outline-none ring-green-500">
+                  <span id="color-choice-1-label" class="sr-only">purple</span>
+                  <span aria-hidden="true" class="h-8 w-8 bg-purple-900 rounded-full border border-black border-opacity-10"></span>
+                </label>
+                <label class="item-color hover:ring hover:ring-gray-200 relative -m-0.5 flex cursor-pointer items-center justify-center rounded-full p-0.5 focus:outline-none ring-green-500">
+                  <span id="color-choice-2-label" class="sr-only">yellow</span>
+                  <span aria-hidden="true" class="h-8 w-8 bg-yellow-300 rounded-full border border-black border-opacity-10"></span>
+                </label>
+                <label class="item-color hover:ring hover:ring-gray-200 relative -m-0.5 flex cursor-pointer items-center justify-center rounded-full p-0.5 focus:outline-none ring-green-500">
+                  <span id="color-choice-3-label" class="sr-only">red</span>
+                  <span aria-hidden="true" class="h-8 w-8 bg-red-600 rounded-full border border-black border-opacity-10"></span>
+                </label>
+              </div>
+            </fieldset>
+  
+            <!-- Sizes -->
+            <div class="mt-6">
+              <h3 class="text-sm font-medium text-gray-900">Choose a capacity</h3>
+              <fieldset class="mt-4">
+                <legend class="sr-only">Choose a capacity</legend>
+                <div class="grid grid-cols-2 gap-4 sm:grid-cols-2">
+                  <label class="product-capacity relative flex items-center justify-center rounded-md border py-2 px-2 text-sm font-medium uppercase hover:bg-gray-50 focus:outline-none sm:flex-1 sm:py-4 cursor-pointer bg-white text-gray-900 ring ring-green-500">
+                    <span data-price="399,99 €">128 GB</span>
+                  </label>
+  
+                  <label class="product-capacity relative flex items-center justify-center rounded-md border py-2 px-2 text-sm font-medium uppercase hover:bg-gray-50 focus:outline-none sm:flex-1 sm:py-4 cursor-pointer bg-white text-gray-90 ring-green-500">
+                    <span data-price="450,00 €">256 GB</span>
+                  </label>
+                </div>
+              </fieldset>
+            </div>
+
+            <!-- Quantity -->
+            <div class="quantity mt-6">
+              <label for="custom-input-number" class="w-full text-gray-700 text-sm font-semibold">Quantity</label>
+              <div class="mt-4 flex flex-row h-10 w-full rounded-md border overflow-hidden relative bg-transparent mt-1 bg-white text-gray-900 shadow-sm">
+                <div data-action="decrement" class="btn-decrement flex align-center text-gray-700 hover:text-gray-700 hover:bg-gray-100 h-full w-20 rounded-l cursor-pointer">
+                  <span class="m-auto text-xl font-normal">-</span>
+                </div>
+                <input class="outline-none focus:outline-none text-center w-full font-semibold text-md hover:text-black hover:bg-gray-100 focus:text-black  md:text-basecursor-default flex items-center text-gray-700  outline-none" name="custom-input-number" value="1"></input>
+                <div data-action="increment" class="btn-increment flex align-center hover:text-gray-700 hover:bg-gray-100 h-full w-20 cursor-pointer">
+                  <span class="m-auto text-xl font-normal">+</span>
+                </div>
+              </div>
+            </div>
+            
+            <!-- Submit Button -->
+            <button type="submit" class="mt-10 flex w-full items-center justify-center rounded-md border border-transparent bg-neutral-900 py-3 px-8 text-base font-medium text-white hover:bg-neutral-700 focus:outline-none focus:ring-2 focus:ring-neutral-500 focus:ring-offset-2">Add to bag</button>
+
+          </div>
+
+          <!-- Description and details -->
+          <div class="mt-10">
+            <h3 class="sr-only">Description</h3>
+            <div class="space-y-6">
+              <p class="text-base text-gray-900">Get your hands on a magical way to use iPhone, combined with security features designed to save lives. And a spectacular 48 Mpx camera that achieves an enormous level of detail. All under the control of the most advanced chip in a smartphone.</p>
+            </div>
+          </div>
+          
+          <div class="mt-10">
+            <h3 class="text-sm font-medium text-gray-900">Highlights</h3>
+
+            <div class="mt-4">
+              <ul role="list" class="list-disc space-y-2 pl-4 text-sm">
+                <li class="text-gray-400"><span class="text-gray-600">A16 Bionic chip</span></li>
+                <li class="text-gray-400"><span class="text-gray-600">Dynamic Island A new way to interact with iPhone</span></li>
+                <li class="text-gray-400"><span class="text-gray-600">Superfast 5G cellular</span></li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="mt-10">
+            <h2 class="text-sm font-medium text-gray-900">Details</h2>
+  
+            <div class="mt-4 space-y-6">
+              <p class="text-xs text-gray-600">Available space is less and varies due to many factors. A standard configuration uses approximately 12GB to 17GB of space, including iOS 16 with its latest features and Apple apps that can be deleted.</p>
+            </div>
+          </div>
+        </div>
+        <div class="py-10 lg:col-span-2 lg:col-start-1 lg:border-r lg:border-gray-200 lg:pt-6 lg:pb-16 lg:pr-8"></div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
