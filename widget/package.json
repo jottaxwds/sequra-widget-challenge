@@ -1,13 +1,19 @@
 {
-  "name": "widget",
-  "private": true,
+  "name": "sequra-widget",
   "version": "0.0.0",
+  "description": "SeQura installments widget for merchant sites",
   "type": "module",
+  "main": "dist/sequra-widget.umd.js",
+  "files": [
+    "dist"
+  ],
   "scripts": {
     "dev": "vite",
     "build": "tsc -b && vite build",
     "lint": "eslint .",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "release": "npm run build && npm run release:commit",
+    "release:commit": "git add ./dist -f && (git commit -m 'build: widget v0.0.0' || true) && git tag -f v0.0.0 && git push origin master --tags"
   },
   "dependencies": {
     "react": "^19.1.1",
