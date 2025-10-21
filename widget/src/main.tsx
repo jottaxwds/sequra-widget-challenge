@@ -1,8 +1,15 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
 import InstallmentsWidget from "./components/InstallmentsWidget";
+declare global {
+  interface Window {
+    SequraWidget: {
+      init: (containerSelector: string, props: { price: number }) => void;
+    };
+  }
+}
 
-export function init(containerSelector: string, props: { price: number }) {
+function init(containerSelector: string, props: { price: number }) {
   const el = document.querySelector(containerSelector);
   if (!el) return console.error("SequraWidget: container not found");
 
@@ -11,4 +18,11 @@ export function init(containerSelector: string, props: { price: number }) {
       <InstallmentsWidget {...props} />
     </React.StrictMode>
   );
+}
+
+
+export { init };
+
+if (typeof window !== 'undefined') {
+  window.SequraWidget = { init };
 }

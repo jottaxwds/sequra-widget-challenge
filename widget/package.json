@@ -1,6 +1,6 @@
 {
   "name": "sequra-widget",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "description": "SeQura installments widget for merchant sites",
   "type": "module",
   "main": "dist/sequra-widget.umd.js",
