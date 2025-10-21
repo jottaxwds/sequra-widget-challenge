@@ -1,10 +1,13 @@
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
 
-// https://vite.dev/config/
 export default defineConfig({
   plugins: [react()],
   publicDir: false,
+  define: {
+    'process.env.NODE_ENV': JSON.stringify('production'),
+    'process': 'undefined',
+  },
   build: {
     lib: {
       entry: "./src/main.tsx",
@@ -19,6 +22,8 @@ export default defineConfig({
           "react-dom": "ReactDOM",
         },
       },
+      external: [],
     },
+    minify: true,
   },
 })
