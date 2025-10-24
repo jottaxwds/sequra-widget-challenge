@@ -1,0 +1,146 @@
+import React, { useState, useRef, useEffect } from "react";
+
+type DropdownOption = {
+  label: string;
+  value: string;
+};
+
+type DropdownProps = {
+  options: DropdownOption[];
+  value?: string;
+  onChange?: (value: string) => void;
+  placeholder?: string;
+  className?: string;
+  optionClassName?: string;
+  menuClassName?: string;
+  label?: string | React.ReactNode; // Add this line
+  labelClassName?: string; // Optional styling for the label
+};
+
+const Dropdown: React.FC<DropdownProps> = ({
+  options,
+  value,
+  onChange,
+  placeholder = "Select...",
+  className = "",
+  optionClassName = "",
+  menuClassName = "",
+  label, // Add this
+  labelClassName = "",
+}) => {
+  const [open, setOpen] = useState(false);
+  const buttonRef = useRef<HTMLButtonElement>(null);
+  const menuRef = useRef<HTMLUListElement>(null);
+
+  // Close dropdown on click outside
+  useEffect(() => {
+    function handleClick(event: MouseEvent) {
+      if (
+        menuRef.current &&
+        !menuRef.current.contains(event.target as Node) &&
+        buttonRef.current &&
+        !buttonRef.current.contains(event.target as Node)
+      ) {
+        setOpen(false);
+      }
+    }
+    if (open) {
+      window.addEventListener("mousedown", handleClick);
+    }
+    return () => window.removeEventListener("mousedown", handleClick);
+  }, [open]);
+
+  // Keyboard navigation
+  useEffect(() => {
+    function handleKeyDown(e: KeyboardEvent) {
+      if (!open) return;
+      if (e.key === "Escape") {
+        setOpen(false);
+        buttonRef.current?.focus();
+      }
+    }
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, [open]);
+
+  const selectedOption = options.find((opt) => opt.value === value);
+
+  return (
+    <div className={`relative inline-block w-full ${className}`}>
+      {label && (
+        <div className={`mb-2 ${labelClassName}`}>
+          {typeof label === 'string' ? (
+            <label className="block text-sm font-medium text-gray-700">
+              {label}
+            </label>
+          ) : (
+            label
+          )}
+        </div>
+      )}
+      <button
+        ref={buttonRef}
+        type="button"
+        aria-haspopup="listbox"
+        aria-expanded={open}
+        onClick={() => setOpen((o) => !o)}
+        className="w-full flex justify-between items-center px-4 py-2 border border-gray-300 bg-white rounded shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+      >
+        <span className={selectedOption ? "" : "text-gray-400"}>
+          {selectedOption ? selectedOption.label : placeholder}
+        </span>
+        <svg
+          className={`w-4 h-4 ml-2 transition-transform ${
+            open ? "rotate-180" : ""
+          }`}
+          fill="none"
+          stroke="currentColor"
+          viewBox="0 0 24 24"
+        >
+          <path
+            d="M19 9l-7 7-7-7"
+            strokeWidth="2"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          />
+        </svg>
+      </button>
+      {open && (
+        <ul
+          ref={menuRef}
+          tabIndex={-1}
+          role="listbox"
+          className={`absolute z-10 mt-1 w-full bg-white border border-gray-200 rounded shadow-lg max-h-60 overflow-auto outline-none ${menuClassName}`}
+        >
+          {options.map((option, i) => (
+            <li
+              key={`${option.value}-${i}`}
+              role="option"
+              aria-selected={option.value === value}
+              tabIndex={0}
+              className={`px-4 py-2 cursor-pointer hover:bg-blue-100 focus:bg-blue-100 ${
+                option.value === value ? "bg-blue-50 font-semibold" : ""
+              } ${optionClassName}`}
+              onClick={() => {
+                onChange?.(option.value);
+                setOpen(false);
+                buttonRef.current?.focus();
+              }}
+              onKeyDown={(e) => {
+                if (e.key === "Enter" || e.key === " ") {
+                  onChange?.(option.value);
+                  setOpen(false);
+                  buttonRef.current?.focus();
+                }
+              }}
+            >
+              {option.label}
+            </li>
+          ))}
+        </ul>
+      )}
+    </div>
+  );
+};
+
+export default Dropdown;

@@ -33,14 +33,14 @@ export async function trackWidgetView(productId: string, totalPrice: number) {
 }
 
 export async function trackInstallmentSelection(
-  productId: string,
+  eventId: string,
   selectedInstallments: number,
   totalPrice: number
 ) {
   const payload: EventPayload = {
     event: "installment_selected",
     context: {
-      productId,
+      eventId,
       selectedInstallments,
       totalPrice,
       selectionTime: new Date().toISOString(),
