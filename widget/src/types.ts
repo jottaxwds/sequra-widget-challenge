@@ -1,6 +1,18 @@
 export type Envs = 'dev' | 'prod';
 
-// jQuery type declaration for window
+export interface EventPayload {
+  event: string;
+  timestamp?: string | number;
+  context?: {
+    [key: string]: string | number | undefined;
+  }
+}
+
+export interface ApiError {
+  error: string;
+  status?: number;
+}
+
 declare global {
   interface Window {
     jQuery?: {
