@@ -26,18 +26,6 @@ describe('Dropdown', () => {
       expect(screen.getByText('Choose option')).toBeInTheDocument();
     });
 
-    it('renders with string label', () => {
-      render(<Dropdown options={items} label="Select an option" />);
-      expect(screen.getByText('Select an option')).toBeInTheDocument();
-      expect(screen.getByRole('button')).toBeInTheDocument();
-    });
-
-    it('renders with React node label', () => {
-      const customLabel = <span data-testid="custom-label">Custom Label</span>;
-      render(<Dropdown options={items} label={customLabel} />);
-      expect(screen.getByTestId('custom-label')).toBeInTheDocument();
-    });
-
     it('renders without label when not provided', () => {
       render(<Dropdown options={items} />);
       expect(screen.queryByText('Select an option')).not.toBeInTheDocument();
@@ -275,12 +263,6 @@ describe('Dropdown', () => {
       fireEvent.click(screen.getByRole('button'));
       
       expect(screen.getByRole('listbox')).toHaveClass('custom-menu');
-    });
-
-    it('applies custom labelClassName to label', () => {
-      render(<Dropdown options={items} label="Test Label" labelClassName="custom-label" />);
-      const labelContainer = screen.getByText('Test Label').parentElement;
-      expect(labelContainer).toHaveClass('custom-label');
     });
   });
 

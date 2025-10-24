@@ -32,7 +32,7 @@ function init(containerSelector: string, props: InitProps) {
         );
       } catch (error) {
         console.error("SequraWidget: Render error", error);
-        // TODO: FALLBACK UI!
+        // TODO: FALLBACK UI?
       }
     };
 

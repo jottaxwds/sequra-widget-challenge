@@ -13,8 +13,6 @@ type DropdownProps = {
   className?: string;
   optionClassName?: string;
   menuClassName?: string;
-  label?: string | React.ReactNode; // Add this line
-  labelClassName?: string; // Optional styling for the label
 };
 
 const Dropdown: React.FC<DropdownProps> = ({
@@ -25,8 +23,6 @@ const Dropdown: React.FC<DropdownProps> = ({
   className = "",
   optionClassName = "",
   menuClassName = "",
-  label, // Add this
-  labelClassName = "",
 }) => {
   const [open, setOpen] = useState(false);
   const buttonRef = useRef<HTMLButtonElement>(null);
@@ -67,17 +63,6 @@ const Dropdown: React.FC<DropdownProps> = ({
 
   return (
     <div className={`relative inline-block w-full ${className}`}>
-      {label && (
-        <div className={`mb-2 ${labelClassName}`}>
-          {typeof label === 'string' ? (
-            <label className="block text-sm font-medium text-gray-700">
-              {label}
-            </label>
-          ) : (
-            label
-          )}
-        </div>
-      )}
       <button
         ref={buttonRef}
         type="button"

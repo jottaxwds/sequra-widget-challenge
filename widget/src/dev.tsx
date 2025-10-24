@@ -5,6 +5,7 @@ import "./index.css";
 
 // Sample total amounts for testing different scenarios
 const SAMPLE_TOTALS = [
+  { label: "Nothing", value: 0 },
   { label: "€50", value: 50 },
   { label: "€100", value: 100 },
   { label: "€250", value: 250 },
@@ -18,7 +19,6 @@ function DevApp() {
 
   return (
     <div>
-      {/* Total selector for testing */}
       <div style={{ marginBottom: "20px", textAlign: "center" }}>
         <label style={{ marginRight: "10px", fontWeight: "bold" }}>
           Test with different totals:

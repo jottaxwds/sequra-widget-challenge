@@ -5,15 +5,19 @@ import { events } from "../../constants";
 import { trackError } from "../../api/helpers";
 import LoadingSpinner from "../ui/LoadingSpinner";
 import InstallmentsDropdown from "../InstallmentsDropdown";
+import HeadLine from "../HeadLine";
 
 interface InstallmentProps {
-  total: number;
+  total?: number;
 }
+
+const sortInstalments = (instalments: CreditAgreement[]) => instalments.sort((a, b) => a.instalment_count - b.instalment_count);
 
 const InstallmentsWidget = ({ total }: InstallmentProps) => {
   const [data, setData] = useState<CreditAgreement[]>();
   const [loading, setLoading] = useState(false);
-  const [selectedInstalment, setSelectedInstalment] = useState<CreditAgreement>();
+  const [selectedInstalment, setSelectedInstalment] =
+    useState<CreditAgreement>();
   const [error, setError] = useState<boolean>(false);
 
   const handleOnSelectInstalment = (instalment: CreditAgreement) => {
@@ -27,34 +31,40 @@ const InstallmentsWidget = ({ total }: InstallmentProps) => {
     setError(false);
 
     try {
-      const agreements = await getCreditAgreement(totalAmount*100);
-      setData(agreements);
+      const agreements = await getCreditAgreement(totalAmount * 100);
+      setData(agreements.length ? sortInstalments(agreements) : []);
     } catch (err: unknown) {
       console.error("Error fetching credit agreements:", err);
       setError(true);
-      trackError(events.credit_agreement_fetch_failed, (err as Error).message, { totalAmount });
+      trackError(events.credit_agreement_fetch_failed, (err as Error).message, {
+        totalAmount,
+      });
     } finally {
       setLoading(false);
     }
   }, []);
 
   useEffect(() => {
+    if (!total) {
+      setData([]);
+      return;
+    }
     fetchCreditAgreements(total);
   }, [total, fetchCreditAgreements]);
 
   if (loading) return <LoadingSpinner />;
   if (error) return <div>Error: {error}</div>;
-  if (!data || data.length === 0)
+  if (total === 0 || !total || !data || data.length === 0)
     return <div>Pago flexible no disponible para este producto.</div>;
 
-  const sortedInstalments = data.sort((a, b) => a.instalment_count - b.instalment_count);
-
   return (
-    <div
-      id="sequra-widget"
-      className="max-w-md mx-auto bg-white"
-    >
-      <InstallmentsDropdown instalments={sortedInstalments} selectedInstalment={selectedInstalment || sortedInstalments[0]} onSelectInstallment={handleOnSelectInstalment} />
+    <div id="sequra-widget" className="max-w-md mx-auto bg-white">
+      <HeadLine selectedInstalment={selectedInstalment || data[0]} />
+      <InstallmentsDropdown
+        instalments={data}
+        selectedInstalment={selectedInstalment || data[0]}
+        onSelectInstallment={handleOnSelectInstalment}
+      />
     </div>
   );
 };
