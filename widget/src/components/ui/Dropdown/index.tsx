@@ -9,6 +9,7 @@ type DropdownProps = {
   options: DropdownOption[];
   value?: string;
   onChange?: (value: string) => void;
+  onDropdownOpen?: () => void;
   placeholder?: string;
   className?: string;
   optionClassName?: string;
@@ -23,6 +24,7 @@ const Dropdown: React.FC<DropdownProps> = ({
   className = "",
   optionClassName = "",
   menuClassName = "",
+  onDropdownOpen,
 }) => {
   const [open, setOpen] = useState(false);
   const buttonRef = useRef<HTMLButtonElement>(null);
@@ -61,6 +63,11 @@ const Dropdown: React.FC<DropdownProps> = ({
 
   const selectedOption = options.find((opt) => opt.value === value);
 
+  const handleOnOpen = () => {
+    setOpen((prevOpenStatus) => !prevOpenStatus);
+    onDropdownOpen?.();
+  }
+
   return (
     <div className={`relative inline-block w-full ${className}`}>
       <button
@@ -68,7 +75,7 @@ const Dropdown: React.FC<DropdownProps> = ({
         type="button"
         aria-haspopup="listbox"
         aria-expanded={open}
-        onClick={() => setOpen((o) => !o)}
+        onClick={handleOnOpen}
         className="w-full flex justify-between items-center px-4 py-2 border border-gray-300 bg-white rounded shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
       >
         <span className={selectedOption ? "" : "text-gray-400"}>

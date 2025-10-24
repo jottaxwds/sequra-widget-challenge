@@ -41,14 +41,8 @@ export async function getCreditAgreement(totalPrice: number): Promise<CreditAgre
 
 export async function sendEvent(payload: EventPayload): Promise<void> {
   if (!payload.event) {
-    throw new Error('Event payload must include an event name');
+    console.error('[SeQura Widget] - Event payload must include an event name');
   }
-
-  // Add timestamp if not provided
-  const eventPayload: EventPayload = {
-    timestamp: new Date().toISOString(),
-    ...payload,
-  };
 
   try {
     const response = await fetch(`${API_BASE_URL}/events`, {
@@ -56,7 +50,7 @@ export async function sendEvent(payload: EventPayload): Promise<void> {
       headers: {
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify(eventPayload),
+      body: JSON.stringify(payload),
     });
 
     if (!response.ok) {

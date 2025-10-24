@@ -1,23 +1,24 @@
 import { getCreditAgreement, sendEvent } from "./api";
-import type { EventPayload } from "../types";
+import type { CreditAgreement, EventPayload } from "../types";
+import { events } from "../constants";
 
-// Example 1: Getting credit agreements for a product
-export async function fetchInstallmentOptions(totalPrice: number) {
+const sortInstalments = (instalments: CreditAgreement[]) => instalments.sort((a, b) => a.instalment_count - b.instalment_count);
+
+export async function getSortedInstallmentOptions(totalPrice: number) {
   try {
     const agreements = await getCreditAgreement(totalPrice);
-    console.log("Available installment options:", agreements);
-    return agreements;
+    return agreements && agreements.length ? sortInstalments(agreements) : [];
   } catch (error) {
     console.error("Failed to fetch installment options:", error);
     throw error;
   }
 }
 
-export async function trackWidgetView(productId: string, totalPrice: number) {
+export async function trackWidgetView(action: string, totalPrice: number) {
   const payload: EventPayload = {
     event: "widget_viewed",
     context: {
-      productId,
+      action,
       totalPrice,
       userAgent: navigator.userAgent,
       timestamp: new Date().toISOString(),
@@ -26,21 +27,19 @@ export async function trackWidgetView(productId: string, totalPrice: number) {
 
   try {
     await sendEvent(payload);
-    console.log("Widget view event sent successfully");
   } catch (error) {
     console.error("Failed to send widget view event:", error);
   }
 }
 
 export async function trackInstallmentSelection(
-  eventId: string,
   selectedInstallments: number,
   totalPrice: number
 ) {
   const payload: EventPayload = {
-    event: "installment_selected",
+    event: "user_action",
     context: {
-      eventId,
+      action: events.instalment_selected,
       selectedInstallments,
       totalPrice,
       selectionTime: new Date().toISOString(),
@@ -49,7 +48,6 @@ export async function trackInstallmentSelection(
 
   try {
     await sendEvent(payload);
-    console.log("Installment selection event sent successfully");
   } catch (error) {
     console.error("Failed to send installment selection event:", error);
   }
@@ -61,7 +59,7 @@ export async function trackError(
   context?: Record<string, string | number | undefined>
 ) {
   const payload: EventPayload = {
-    event: "error_occurred",
+    event: 'error',
     context: {
       errorType,
       errorMessage,
@@ -73,7 +71,6 @@ export async function trackError(
 
   try {
     await sendEvent(payload);
-    console.log("Error event sent successfully");
   } catch (error) {
     console.error("Failed to send error event:", error);
   }

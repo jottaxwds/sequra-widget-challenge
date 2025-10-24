@@ -82,7 +82,6 @@ export function calculateTotal(
   let price = 0;
   let quantity = 1;
 
-  // Extract price if selector provided
   if (priceSelector) {
     const extractedPrice = extractPriceFromElement(priceSelector);
     if (extractedPrice !== null) {
@@ -90,7 +89,6 @@ export function calculateTotal(
     }
   }
 
-  // Extract quantity if selector provided
   if (quantitySelector) {
     const extractedQuantity = extractQuantityFromElement(quantitySelector);
     if (extractedQuantity !== null) {

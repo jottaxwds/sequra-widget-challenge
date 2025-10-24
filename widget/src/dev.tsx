@@ -41,7 +41,6 @@ function DevApp() {
         </select>
       </div>
 
-      {/* Widget */}
       <InstallmentsWidget total={selectedTotal} />
     </div>
   );

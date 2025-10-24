@@ -1,4 +1,4 @@
-import { trackInstallmentSelection } from "../../api/helpers";
+import { trackInstallmentSelection, trackWidgetView } from "../../api/helpers";
 import { events } from "../../constants";
 import type { CreditAgreement } from "../../types";
 import Dropdown from "../ui/Dropdown";
@@ -27,9 +27,13 @@ const InstallmentsDropdown = ({
       (instalment) => instalment.instalment_count.toString() === value
     );
     if (instalment) {
-      trackInstallmentSelection(events.instalment_selected, instalment.instalment_count, instalment.instalment_total.value);
+      trackInstallmentSelection(instalment.instalment_count, instalment.instalment_total.value);
       onSelectInstallment(instalment);
     }
+  };
+
+  const handleOnDropdownOpen = () => {
+    trackWidgetView(events.dropdown_opened, selectedInstalment.total_with_tax.value);
   };
 
   return (
@@ -37,6 +41,7 @@ const InstallmentsDropdown = ({
       options={instalmentOptions}
       value={selectedInstalment.instalment_count.toString()}
       onChange={handleOnSelectInstalment}
+      onDropdownOpen={handleOnDropdownOpen}
     />
   );
 };
