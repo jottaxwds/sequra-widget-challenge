@@ -110,9 +110,7 @@ const Dropdown: React.FC<DropdownProps> = ({
               role="option"
               aria-selected={option.value === value}
               tabIndex={0}
-              className={`px-4 py-2 cursor-pointer hover:bg-blue-100 focus:bg-blue-100 ${
-                option.value === value ? "bg-blue-50 font-semibold" : ""
-              } ${optionClassName}`}
+              className={`px-4 py-2 cursor-pointer hover:bg-blue-100 focus:bg-blue-100 ${option.value === value ? "bg-blue-50 font-normal no-underline" : "font-normal no-underline"} ${optionClassName}`}
               onClick={() => {
                 onChange?.(option.value);
                 setOpen(false);

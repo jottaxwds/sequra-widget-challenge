@@ -55,7 +55,7 @@ const MoreInfoDialog = ({
   return (
     <div
       ref={backdropRef}
-      className="fixed inset-0 z-50 flex justify-center sm:items-center sm:mt-0 items-start pt-4"
+      className="fixed inset-0 z-50 flex items-center justify-center p-4"
       style={{ background: "rgba(0,0,0,0.2)", backdropFilter: "blur(4px)" }}
       role="dialog"
       aria-modal="true"
@@ -63,10 +63,10 @@ const MoreInfoDialog = ({
     >
       <div
         ref={modalRef}
-        className="relative w-full max-w-lg mx-4 bg-white rounded-lg shadow-xl transform transition-all"
+        className="relative w-full max-w-lg max-h-full bg-white rounded-lg shadow-xl transform transition-all overflow-hidden flex flex-col"
         onClick={(e) => e.stopPropagation()}
       >
-        <div className="relative p-6">
+        <div className="relative p-6 shrink-0">
           <div className="flex flex-col items-center text-center w-full">
             <h2
               id="modal-title"
@@ -87,8 +87,8 @@ const MoreInfoDialog = ({
           </button>
         </div>
 
-        <div className="p-6">
-          {/* Big screens (>768px): text left, image right */}
+        <div className="p-6 flex-1 overflow-y-auto">
+          {/* Big screens (>768px) */}
           <ul className="hidden md:block list-disc pl-5 space-y-3 mb-8">
             <li>
               <div className="flex items-center w-full gap-6">
@@ -140,7 +140,7 @@ const MoreInfoDialog = ({
             </li>
           </ul>
 
-          {/* Medium screens (480px-767px): image top centered, text below centered, no bullets */}
+          {/* Medium screens (480px-767px) */}
           <div className="hidden sm:block md:hidden space-y-6 mb-8">
             <div className="flex flex-col items-center text-center space-y-4">
               <div className="flex justify-center">
@@ -182,7 +182,7 @@ const MoreInfoDialog = ({
             </div>
           </div>
 
-          {/* Small screens (<480px): list with bullets, no images */}
+          {/* Small screens (<480px) */}
           <ul className="block sm:hidden list-disc pl-5 space-y-3 mb-8">
             <li>Fracciona tu pago con solo un coste fijo por cuota</li>
             <li>Ahora solo pagas la primera cuota</li>
@@ -195,7 +195,7 @@ const MoreInfoDialog = ({
           </div>
         </div>
 
-        <div className="px-6 py-4 rounded-b-lg block md:hidden">
+        <div className="px-6 py-4 rounded-b-lg block md:hidden shrink-0">
           <button
             onClick={onClose}
             className="w-full px-4 py-2 text-sm font-medium underline cursor-pointer"
