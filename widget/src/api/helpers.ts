@@ -9,7 +9,7 @@ export async function getSortedInstallmentOptions(totalPrice: number) {
     const agreements = await getCreditAgreement(totalPrice);
     return agreements && agreements.length ? sortInstalments(agreements) : [];
   } catch (error) {
-    console.error("Failed to fetch installment options:", error);
+    console.error("[SeQura Widget] - Failed to fetch installment options:", error);
     throw error;
   }
 }
@@ -28,7 +28,7 @@ export async function trackWidgetView(action: string, totalPrice: number) {
   try {
     await sendEvent(payload);
   } catch (error) {
-    console.error("Failed to send widget view event:", error);
+    console.error("[SeQura Widget] - Failed to send widget view event:", error);
   }
 }
 
@@ -49,7 +49,7 @@ export async function trackInstallmentSelection(
   try {
     await sendEvent(payload);
   } catch (error) {
-    console.error("Failed to send installment selection event:", error);
+    console.error("[SeQura Widget] - Failed to send installment selection event:", error);
   }
 }
 
@@ -72,6 +72,6 @@ export async function trackError(
   try {
     await sendEvent(payload);
   } catch (error) {
-    console.error("Failed to send error event:", error);
+    console.error("[SeQura Widget] - Failed to send error event:", error);
   }
 }

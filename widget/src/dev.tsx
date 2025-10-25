@@ -3,7 +3,6 @@ import ReactDOM from "react-dom/client";
 import InstallmentsWidget from "./components/InstallmentsWidget";
 import "./index.css";
 
-// Sample total amounts for testing different scenarios
 const SAMPLE_TOTALS = [
   { label: "Nothing", value: 0 },
   { label: "€50", value: 50 },
@@ -46,7 +45,6 @@ function DevApp() {
   );
 }
 
-// Initialize the development app
 const container = document.getElementById("sequra-widget-dev");
 if (container) {
   const root = ReactDOM.createRoot(container);

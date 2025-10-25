@@ -11,7 +11,6 @@ import {
   setupObservers
 } from '../helpers';
 
-// Mock DOM environment
 Object.defineProperty(window, 'MutationObserver', {
   writable: true,
   value: vi.fn(),
@@ -33,7 +32,7 @@ describe('parsePrice', () => {
 
   it('should handle various separators', () => {
     expect(parsePrice('1,234.56')).toBe(1234.56);
-    expect(parsePrice('1.234,56')).toBe(1234.56); // European format converted
+    expect(parsePrice('1.234,56')).toBe(1234.56);
     expect(parsePrice('1 234.56')).toBe(1234.56);
   });
 
@@ -384,10 +383,8 @@ describe('setupQuantityObserver', () => {
     
     setupQuantityObserver('.qty', mockCallback);
     
-    // Get the polling function that was passed to setInterval
     const pollingFunction = mockSetInterval.mock.calls[0][0];
     
-    // Simulate a programmatic change
     input.value = '2';
     pollingFunction();
     
@@ -407,7 +404,7 @@ describe('setupObservers', () => {
       disconnect: vi.fn(),
       takeRecords: vi.fn(),
     };
-    // Mock the constructor to return our specific mockObserver
+
     vi.mocked(window.MutationObserver).mockImplementation(function(this: any) {
       return Object.assign(this, mockObserver);
     });
@@ -426,7 +423,6 @@ describe('setupObservers', () => {
     
     setupObservers('.price', '.qty', mockCallback);
     
-    // Both observers should be set up (verified by no warnings)
     expect(console.warn).not.toHaveBeenCalled();
   });
 
@@ -449,7 +445,6 @@ describe('setupObservers', () => {
   it('should handle both selectors being undefined', () => {
     setupObservers(undefined, undefined, mockCallback);
     
-    // Should not crash and no warnings should be issued
     expect(console.warn).not.toHaveBeenCalled();
   });
 

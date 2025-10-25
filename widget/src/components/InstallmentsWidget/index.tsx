@@ -46,7 +46,7 @@ const InstallmentsWidget = ({ total }: InstallmentProps) => {
         agreements[0].instalment_total.value
       );
     } catch (err: unknown) {
-      console.error("Error fetching credit agreements:", err);
+      console.error("[SeQura Widget] - Error fetching credit agreements:", err);
       setError(true);
       trackError(events.credit_agreement_fetch_failed, (err as Error).message, {
         totalAmount,

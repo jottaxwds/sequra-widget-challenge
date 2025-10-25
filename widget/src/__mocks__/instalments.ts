@@ -1,0 +1,40 @@
+import type { CreditAgreement } from "../types";
+
+export const mockInstalments: CreditAgreement[] = [
+  {
+    instalment_count: 3,
+    total_with_tax: { value: 300, string: '300€' },
+    instalment_amount: { value: 100, string: '100€' },
+    instalment_fee: { value: 0, string: '0€' },
+    instalment_total: { value: 100, string: '100€' },
+    grand_total: { value: 300, string: '300€' },
+    cost_of_credit: { value: 0, string: '0€' },
+    cost_of_credit_pct: { value: 0, string: '0%' },
+    apr: { value: 0, string: '0%' },
+    max_financed_amount: { value: 300, string: '300€' },
+  },
+  {
+    instalment_count: 6,
+    total_with_tax: { value: 600, string: '600€' },
+    instalment_amount: { value: 100, string: '100€' },
+    instalment_fee: { value: 10, string: '10€' },
+    instalment_total: { value: 110, string: '110€' },
+    grand_total: { value: 660, string: '660€' },
+    cost_of_credit: { value: 60, string: '60€' },
+    cost_of_credit_pct: { value: 10, string: '10%' },
+    apr: { value: 12, string: '12%' },
+    max_financed_amount: { value: 600, string: '600€' },
+  },
+  {
+    instalment_count: 12,
+    total_with_tax: { value: 1200, string: '1200€' },
+    instalment_amount: { value: 100, string: '100€' },
+    instalment_fee: { value: 20, string: '20€' },
+    instalment_total: { value: 120, string: '120€' },
+    grand_total: { value: 1440, string: '1440€' },
+    cost_of_credit: { value: 240, string: '240€' },
+    cost_of_credit_pct: { value: 20, string: '20%' },
+    apr: { value: 24, string: '24%' },
+    max_financed_amount: { value: 1200, string: '1200€' },
+  },
+];

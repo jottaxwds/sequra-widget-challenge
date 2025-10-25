@@ -34,7 +34,7 @@ export async function getCreditAgreement(totalPrice: number): Promise<CreditAgre
     
     return handleApiResponse<CreditAgreement[]>(response);
   } catch (error) {
-    console.error('Failed to fetch credit agreements:', error);
+    console.error('[SeQura Widget] - Failed to fetch credit agreements:', error);
     throw error;
   }
 }
@@ -57,7 +57,7 @@ export async function sendEvent(payload: EventPayload): Promise<void> {
       throw new Error(`HTTP ${response.status}: ${response.statusText}`);
     }
   } catch (error) {
-    console.error('Failed to send event:', error);
+    console.error('[SeQura Widget] - Failed to send event:', error);
     throw error;
   }
 }

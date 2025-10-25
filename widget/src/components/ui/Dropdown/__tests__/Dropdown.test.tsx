@@ -54,11 +54,9 @@ describe('Dropdown', () => {
       render(<Dropdown options={items} />);
       const button = screen.getByRole('button');
       
-      // Open dropdown
       fireEvent.click(button);
       expect(screen.getByText('First')).toBeInTheDocument();
       
-      // Close dropdown
       fireEvent.click(button);
       expect(screen.queryByText('First')).not.toBeInTheDocument();
     });
@@ -100,7 +98,7 @@ describe('Dropdown', () => {
       
       const selectedOption = screen.getByRole('option', { name: 'Second' });
       expect(selectedOption).toHaveAttribute('aria-selected', 'true');
-      expect(selectedOption).toHaveClass('bg-blue-50', 'font-semibold');
+      expect(selectedOption.classList).toContain('bg-blue-50');
     });
 
     it('works without onChange handler', () => {

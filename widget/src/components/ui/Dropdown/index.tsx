@@ -27,6 +27,7 @@ const Dropdown: React.FC<DropdownProps> = ({
   onDropdownOpen,
 }) => {
   const [open, setOpen] = useState(false);
+  const [highlightedIndex, setHighlightedIndex] = useState(-1);
   const buttonRef = useRef<HTMLButtonElement>(null);
   const menuRef = useRef<HTMLUListElement>(null);
 
@@ -52,19 +53,43 @@ const Dropdown: React.FC<DropdownProps> = ({
   useEffect(() => {
     function handleKeyDown(e: KeyboardEvent) {
       if (!open) return;
+      
       if (e.key === "Escape") {
         setOpen(false);
+        setHighlightedIndex(-1);
+        buttonRef.current?.focus();
+      } else if (e.key === "ArrowDown") {
+        e.preventDefault();
+        setHighlightedIndex(prev => 
+          prev < options.length - 1 ? prev + 1 : 0
+        );
+      } else if (e.key === "ArrowUp") {
+        e.preventDefault();
+        setHighlightedIndex(prev => 
+          prev > 0 ? prev - 1 : options.length - 1
+        );
+      } else if (e.key === "Enter" && highlightedIndex >= 0) {
+        e.preventDefault();
+        onChange?.(options[highlightedIndex].value);
+        setOpen(false);
+        setHighlightedIndex(-1);
         buttonRef.current?.focus();
       }
     }
     window.addEventListener("keydown", handleKeyDown);
     return () => window.removeEventListener("keydown", handleKeyDown);
-  }, [open]);
+  }, [open, highlightedIndex, options, onChange]);
 
   const selectedOption = options.find((opt) => opt.value === value);
 
   const handleOnOpen = () => {
-    setOpen((prevOpenStatus) => !prevOpenStatus);
+    setOpen((prevOpenStatus) => {
+      if (!prevOpenStatus) {
+        // Reset highlighted index when opening
+        setHighlightedIndex(-1);
+      }
+      return !prevOpenStatus;
+    });
     onDropdownOpen?.();
   }
 
@@ -104,29 +129,43 @@ const Dropdown: React.FC<DropdownProps> = ({
           role="listbox"
           className={`absolute z-10 mt-1 w-full bg-white border border-gray-200 rounded shadow-lg max-h-60 overflow-auto outline-none ${menuClassName}`}
         >
-          {options.map((option, i) => (
-            <li
-              key={`${option.value}-${i}`}
-              role="option"
-              aria-selected={option.value === value}
-              tabIndex={0}
-              className={`px-4 py-2 cursor-pointer hover:bg-blue-100 focus:bg-blue-100 ${option.value === value ? "bg-blue-50 font-normal no-underline" : "font-normal no-underline"} ${optionClassName}`}
-              onClick={() => {
-                onChange?.(option.value);
-                setOpen(false);
-                buttonRef.current?.focus();
-              }}
-              onKeyDown={(e) => {
-                if (e.key === "Enter" || e.key === " ") {
+          {options.map((option, i) => {
+            const isSelected = option.value === value;
+            const isHighlighted = i === highlightedIndex;
+            
+            return (
+              <li
+                key={`${option.value}-${i}`}
+                role="option"
+                aria-selected={isSelected}
+                tabIndex={0}
+                className={`px-4 py-2 cursor-pointer font-normal no-underline ${
+                  isHighlighted 
+                    ? "bg-blue-200" 
+                    : isSelected 
+                      ? "bg-blue-50" 
+                      : "hover:bg-blue-100"
+                } ${optionClassName}`}
+                onMouseEnter={() => setHighlightedIndex(i)}
+                onClick={() => {
                   onChange?.(option.value);
                   setOpen(false);
+                  setHighlightedIndex(-1);
                   buttonRef.current?.focus();
-                }
-              }}
-            >
-              {option.label}
-            </li>
-          ))}
+                }}
+                onKeyDown={(e) => {
+                  if (e.key === "Enter" || e.key === " ") {
+                    onChange?.(option.value);
+                    setOpen(false);
+                    setHighlightedIndex(-1);
+                    buttonRef.current?.focus();
+                  }
+                }}
+              >
+                {option.label}
+              </li>
+            );
+          })}
         </ul>
       )}
     </div>

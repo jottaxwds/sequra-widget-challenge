@@ -14,7 +14,7 @@ function init(containerSelector: string, props: InitProps) {
   try {
     const container = document.querySelector(containerSelector);
     if (!container) {
-      console.error("SequraWidget: container not found");
+      console.error("[SeQura Widget] - Container not found");
       return;
     }
 
@@ -31,7 +31,7 @@ function init(containerSelector: string, props: InitProps) {
           </React.StrictMode>
         );
       } catch (error) {
-        console.error("SequraWidget: Render error", error);
+        console.error("[SeQura Widget] - Render error", error);
         // TODO: FALLBACK UI?
       }
     };
@@ -51,9 +51,9 @@ function init(containerSelector: string, props: InitProps) {
 
     setupObservers(props.priceSelector, props.quantitySelector, update);
 
-    console.info("SequraWidget initialized!", props);
+    console.info("[SeQura Widget] - Initialized", props);
   } catch (error) {
-    console.error("SequraWidget: Initialization failed", error);
+    console.error("[SeQura Widget] - Initialization failed", error);
   }
 }
 

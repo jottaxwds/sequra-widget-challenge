@@ -1,6 +1,6 @@
 {
   "name": "sequra-widget",
-  "version": "0.0.3-dev",
+  "version": "0.0.4-dev",
   "description": "SeQura installments widget for merchant sites",
   "type": "module",
   "main": "dist/sequra-widget.umd.js",
@@ -34,6 +34,7 @@
     "@types/react": "^18.3.12",
     "@types/react-dom": "^18.3.1",
     "@vitejs/plugin-react": "^5.0.4",
+    "@vitest/coverage-v8": "^4.0.3",
     "@vitest/ui": "^4.0.1",
     "autoprefixer": "^10.4.21",
     "eslint": "^9.36.0",
