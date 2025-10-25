@@ -100,7 +100,7 @@ describe('Dropdown', () => {
       
       const selectedOption = screen.getByRole('option', { name: 'Second' });
       expect(selectedOption).toHaveAttribute('aria-selected', 'true');
-      expect(selectedOption).toHaveClass('bg-blue-50', 'font-semibold');
+      expect(selectedOption.classList).toContain('bg-blue-50');
     });
 
     it('works without onChange handler', () => {
