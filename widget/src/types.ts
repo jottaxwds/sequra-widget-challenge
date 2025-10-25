@@ -1,5 +1,3 @@
-export type Envs = 'dev' | 'prod';
-
 export interface EventPayload {
   event: string;
   timestamp?: string | number;

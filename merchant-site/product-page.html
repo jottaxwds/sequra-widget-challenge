@@ -173,14 +173,12 @@
       </div>
     </div>
   </div>
-  <script src="https://cdn.jsdelivr.net/gh/jottaxwds/sequra-widget-challenge@0.0.4-dev/widget/dist/sequra-widget.umd.js"></script>
+  <script src="https://cdn.jsdelivr.net/gh/jottaxwds/sequra-widget-challenge@latest/widget/dist/sequra-widget.umd.js"></script>
     <script>
         if (typeof SequraWidget !== 'undefined') {
-            SequraWidget.init('#sequra-widget', { 
-              productPrice: 100,
+            SequraWidget.init('#sequra-widget', {
               priceSelector: '#product-price',
               quantitySelector: 'input[name="custom-input-number"]',
-              environment: 'dev'
             });
         }
     </script>

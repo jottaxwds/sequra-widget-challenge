@@ -1,11 +1,9 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
 import InstallmentsWidget from "./components/InstallmentsWidget";
-import type { Envs } from "./types";
 import { calculateTotal, setupObservers } from "./helpers";
 
 interface InitProps {
-  environment?: Envs;
   priceSelector?: string;
   quantitySelector?: string;
 }
